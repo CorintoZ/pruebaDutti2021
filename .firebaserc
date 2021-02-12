@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "starwars-ships-dc262": {
+      "hosting": {
+        "massimo-dutti": [
+          "starwars-ships-dc262"
+        ]
+      }
+    }
+  }
+}

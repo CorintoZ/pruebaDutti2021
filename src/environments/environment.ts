@@ -4,6 +4,14 @@
 
 export const environment = {
   production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyCLfn2fRkgr0v1MbcWPOgTE0NSSd_173to",
+    authDomain: "starwars-ships-dc262.firebaseapp.com",
+    projectId: "starwars-ships-dc262",
+    storageBucket: "starwars-ships-dc262.appspot.com",
+    messagingSenderId: "890241022518",
+    appId: "1:890241022518:web:61b2aeaf6cd8ed18c3f697",
+  },
 };
 
 /*
