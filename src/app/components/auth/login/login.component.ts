@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     try {
       const user = this.authService.login(username, password);
       if (user) {
-        this.router.navigate(["/principal/ships"]);
+        this.router.navigate(["/principal/pageOne"]);
       } else {
         this.unregistered = true;
       }
