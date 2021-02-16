@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import firebase from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { first } from "rxjs/operators";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Injectable()
 export class AuthService {
   public user: firebase.User;
-  constructor(public fAuth: AngularFireAuth) {}
+  constructor(public fAuth: AngularFireAuth, private fstore: AngularFirestore) {}
 
   async login(email: string, password: string) {
     try {
@@ -16,9 +17,13 @@ export class AuthService {
     }
   }
 
-  async register(email: string, password: string) {
+  async register(email: string, password: string, username: string, firstname: string, lastname: string) {
     try {
-      return await this.fAuth.createUserWithEmailAndPassword(email, password);
+      return await this.fAuth.createUserWithEmailAndPassword(email, password).then((userCreated) => {
+        const userId = userCreated.user.uid;
+
+        this.fstore.collection("users").doc(userId).set({ firstname, lastname, username, email });
+      });
     } catch (err) {
       console.error(err);
     }
