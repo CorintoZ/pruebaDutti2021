@@ -11,7 +11,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      return await this.fAuth.signInWithEmailAndPassword(email, password);
+      return await this.fAuth.signInWithEmailAndPassword(email + "@starwarsship.com", password);
     } catch (err) {
       console.error(err);
     }
@@ -19,11 +19,13 @@ export class AuthService {
 
   async register(email: string, password: string, username: string, firstname: string, lastname: string) {
     try {
-      return await this.fAuth.createUserWithEmailAndPassword(email, password).then((userCreated) => {
-        const userId = userCreated.user.uid;
+      return await this.fAuth
+        .createUserWithEmailAndPassword(username + "@starwarsship.com", password)
+        .then((userCreated) => {
+          const userId = userCreated.user.uid;
 
-        this.fstore.collection("users").doc(userId).set({ firstname, lastname, username, email });
-      });
+          this.fstore.collection("users").doc(userId).set({ firstname, lastname, username, email });
+        });
     } catch (err) {
       console.error(err);
     }
