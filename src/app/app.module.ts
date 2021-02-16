@@ -10,6 +10,10 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AppComponent } from "./app.component";
 import { PrincipalComponent } from "./components/principal/principal.component";
 import { environment } from "src/environments/environment";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { ShipsEffects } from "src/shared/store/ships.effects";
+import { reducers } from "src/shared/store/store";
 
 @NgModule({
   declarations: [AppComponent, PrincipalComponent],
@@ -21,6 +25,8 @@ import { environment } from "src/environments/environment";
     PrincipalModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([ShipsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

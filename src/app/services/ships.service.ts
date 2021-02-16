@@ -18,8 +18,8 @@ export class ShipsService {
 
   constructor(private http: HttpClient) {}
 
-  getShips(): Observable<any> {
-    return this.http.get(this.url).pipe(
+  getShips(page): Observable<any> {
+    return this.http.get(this.url + `?page=` + page).pipe(
       map((data) => {
         return data;
       }),
